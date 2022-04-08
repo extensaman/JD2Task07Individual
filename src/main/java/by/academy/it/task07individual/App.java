@@ -1,5 +1,7 @@
 package by.academy.it.task07individual;
 
+import java.util.ResourceBundle;
+
 /**
  * There is a Car entity, it has
  * - identifier;
@@ -39,8 +41,11 @@ package by.academy.it.task07individual;
 
 public class App
 {
-    public static void main( String[] args )
-    {
 
+    public static final String BUNDLE_FILE = "database";
+
+    public static void main(String[] args )
+    {
+        ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_FILE);
     }
 }
