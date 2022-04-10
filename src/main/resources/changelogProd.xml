@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="1" author="home" context="example-context">
+        <sql>
+            create table car (
+                id int auto_increment primary key,
+                identifier int,
+                model varchar(50),
+                color varchar(30),
+                price decimal(8,2)
+            );
+            insert into car (identifier, model, color, price) values
+            (123,'Lada','Purple',12342.00),
+            (332,'Kia','Rio',15631.10),
+            (792,'Opel','Astra',14389.30),
+            (579,'Alfa Romeo','White',25241.42);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

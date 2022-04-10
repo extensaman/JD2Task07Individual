@@ -1,6 +1,11 @@
 package by.academy.it.task07individual;
 
-import java.util.ResourceBundle;
+import by.academy.it.task07individual.dao.EntityDao;
+import by.academy.it.task07individual.dao.EntityDaoException;
+import by.academy.it.task07individual.dao.EntityDaoProvider;
+import by.academy.it.task07individual.entity.Car;
+
+import java.util.Map;
 
 /**
  * There is a Car entity, it has
@@ -19,12 +24,12 @@ import java.util.ResourceBundle;
  * write the annotation MyTable(name - the name of the table)
  * above the Car class.
  * Implement CRUD operations on Car using jdbc
- *
+ * <p>
  * - select
  * - update
  * - delete
  * - insert
- *
+ * <p>
  * Moreover, these operations should make a request to the database
  * using the annotations
  * MyColumn and MyTable (through reflection). i.e. if the user of
@@ -39,13 +44,35 @@ import java.util.ResourceBundle;
  * @version 1.0
  */
 
-public class App
-{
+public final class App {
+    private App() {
+    }
 
-    public static final String BUNDLE_FILE = "database";
+    /**
+     *  Resource bundle fo production address.
+     */
+    public static final String DATABASE_PROD = "databaseProd";
 
-    public static void main(String[] args )
-    {
-        ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_FILE);
+    /**
+     * @param args
+     * @throws EntityDaoException
+     */
+    public static void main(final String[] args) throws EntityDaoException {
+        EntityDao dao =
+                EntityDaoProvider.getNewInstance(Car.class, DATABASE_PROD);
+        printMap("DB consists of :", dao.findAll());
+    }
+
+    /**
+     * @param message
+     * @param map
+     */
+    private static void printMap(final String message,
+                                 final Map<Long, Object> map) {
+        System.out.println(message);
+        for (Map.Entry<Long, Object> longObjectEntry : map.entrySet()) {
+            System.out.println("ID = " + longObjectEntry.getKey());
+            System.out.println(longObjectEntry.getValue());
+        }
     }
 }
